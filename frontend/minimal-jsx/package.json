@@ -1,0 +1,11 @@
+{
+    "name": "minimal-jsx",
+    "private": true,
+    "exports": {
+        "./jsx-runtime": "./jsx-runtime.ts",
+        "./jsx-dev-runtime": "./jsx-dev-runtime.ts",
+        ".": {
+            "types": "./types.d.ts"
+        }
+    }
+}

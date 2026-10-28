@@ -1,0 +1,22 @@
+# Python envirtonment
+.venv/
+__pycache__/
+*.py[cod]
+
+# Secrets
+# NEVER push env to git
+.env
+.env.*
+!.env.example
+
+# Editor junk
+.vscode/
+.zed/
+.idea/
+.DS_Store
+Thumbs.db
+
+
+# Your personal files
+start-db.ps1
+psserver-setup

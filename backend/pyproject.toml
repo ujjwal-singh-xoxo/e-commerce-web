@@ -1,0 +1,26 @@
+[project]
+name = "e-commerce-web"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "django>=6.1.2",
+    "phonenumbers>=9.0.42",
+    "psycopg[binary]>=3.3.6",
+    "python-dotenv>=1.2.4",
+]
+
+[dependency-groups]
+dev = [
+    "django-types>=0.24.0",
+]
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+typeCheckingMode = "standard"
+
+reportGeneralTypeIssues = "warning"
+reportUnknownMemberType = false       # Stops complaints about model.objects or model.id
+reportUnknownVariableType = false     # Stops complaints about dynamically assigned QuerySets
+reportUnknownArgumentType = false     # Relaxes arguments passed into complex Django fields
+# reportAttributeAccessOnFailedImport = false
