@@ -10,5 +10,5 @@ document.body.append(
             price_currency: '$',
             image: 'https://picsum.photos/512/512',
         }}
-    ></ProductCard>,
+    />
 );

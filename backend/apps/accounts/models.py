@@ -29,6 +29,10 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 
 
 class AddressBook(models.Model):
+    """
+    A row per address line
+    """
+
     user_id = models.ForeignKey(
         UserProfile, on_delete=models.CASCADE, related_name="addresses"
     )
