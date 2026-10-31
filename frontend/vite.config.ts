@@ -20,7 +20,7 @@ export default defineConfig({
     },
     resolve: {
         alias: {
-            'minimal-jsx': path.resolve(__dirname, 'minimal-jsx'),
+            'minimal-jsx': path.resolve(import.meta.dirname, 'minimal-jsx'),
         },
     },
 });
