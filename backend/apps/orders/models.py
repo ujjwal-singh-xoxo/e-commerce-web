@@ -28,6 +28,32 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    sub_total = models.DecimalField(max_digits=15, decimal_places=2)
+    tax_total = models.DecimalField(max_digits=15, decimal_places=2)
+    grand_total = models.DecimalField(max_digits=15, decimal_places=2)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                condition=models.Q(
+                    sub_total__gte=0,
+                ),
+                name="sub_total_greater_than_or_equal_to_zero",
+            ),
+            models.CheckConstraint(
+                condition=models.Q(
+                    tax_total__gte=0,
+                ),
+                name="tax_total_greater_than_or_equal_to_zero",
+            ),
+            models.CheckConstraint(
+                condition=models.Q(
+                    grand_total_gt=models.F("sub_total"),
+                ),
+                name="grand_total_greater_than_or_equal_to_zero",
+            ),
+        ]
+
 
 class OrderItem(models.Model):
     """
@@ -40,8 +66,21 @@ class OrderItem(models.Model):
         "products.Product", on_delete=models.PROTECT, related_name="order_items"
     )
 
+    product_name = models.CharField(max_length=256)
+
     quantity = models.PositiveIntegerField()
-    unit_price = models.DecimalField(max_digits=12, decimal_places=2)
+    selling_price = models.DecimalField(max_digits=12, decimal_places=2)
+
+    discount_percent = models.DecimalField(
+        max_digits=6, decimal_places=2
+    )  # 3 cuz 100% for free if applicable
+    discount_amount = models.DecimalField(max_digits=15, decimal_places=2)
+
+    final_unit_price = models.DecimalField(max_digits=12, decimal_places=2)
+
+    sub_total = models.DecimalField(max_digits=15, decimal_places=2)
+    tax_total = models.DecimalField(max_digits=15, decimal_places=2)
+    item_total = models.DecimalField(max_digits=15, decimal_places=2)
 
     class Meta:
         constraints = [
