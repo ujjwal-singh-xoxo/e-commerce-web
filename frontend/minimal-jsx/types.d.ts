@@ -90,6 +90,7 @@ type BaseElement = {
     hidden?: boolean;
     draggable?: boolean;
     title?: string;
+    [attribute: string]: any;
 } & { [Key in `data-${string}`]?: string | boolean } & {
     [Key in keyof GlobalEventHandlersEventMap as EventHandlerKey<Key>]?: (
         event: GlobalEventHandlersEventMap[Key],
@@ -108,8 +109,6 @@ namespace JSX {
 
     type IntrinsicElements = {
         [T in keyof HTMLElementTagNameMap]: BaseElement &
-            (T extends keyof MinJSXElementProperties
-                ? MinJSXElementProperties[T]
-                : {});
+            (T extends keyof MinJSXElementProperties ? MinJSXElementProperties[T] : {});
     };
 }

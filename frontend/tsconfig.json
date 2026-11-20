@@ -22,8 +22,8 @@
         "jsx": "react-jsx",
         "jsxImportSource": "minimal-jsx",
         "paths": {
-            "minimal-jsx/*": ["./minimal-jsx/*"],
-        },
+            "minimal-jsx/*": ["./minimal-jsx/*"]
+        }
     },
-    "include": ["src", "minimal-jsx"],
+    "include": ["src", "minimal-jsx"]
 }

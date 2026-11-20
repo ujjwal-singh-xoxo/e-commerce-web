@@ -1,0 +1,39 @@
+.catalogue-tools {
+    background: #eeeae1;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 28px;
+    padding: 18px;
+}
+.catalogue-tools label {
+    color: #615c54;
+    display: grid;
+    font:
+        10px Arial,
+        sans-serif;
+    gap: 7px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.catalogue-tools input,
+.catalogue-tools select {
+    background: #fff;
+    border: 1px solid #bcb5a9;
+    color: #181715;
+    font:
+        12px Arial,
+        sans-serif;
+    min-width: 0;
+    padding: 11px;
+}
+@media (max-width: 850px) {
+    .catalogue-tools {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 500px) {
+    .catalogue-tools {
+        grid-template-columns: 1fr;
+    }
+}

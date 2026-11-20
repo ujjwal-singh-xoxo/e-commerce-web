@@ -7,10 +7,7 @@ type JSXProps = Record<string, any> & {
 export const Fragment = Symbol.for('Fragment');
 type Component<P = any> = (props: P) => HTMLElement | DocumentFragment;
 
-type ElementType =
-    | Component<any>
-    | keyof HTMLElementTagNameMap
-    | typeof Fragment;
+type ElementType = Component<any> | keyof HTMLElementTagNameMap | typeof Fragment;
 
 function appendChild(parent: HTMLElement | DocumentFragment, child: any) {
     if (!canRender(child)) return;
@@ -35,9 +32,7 @@ function commonJSXHandler(
 
     const { children, ...rest } = props ?? {};
     const element =
-        type == Fragment
-            ? document.createDocumentFragment()
-            : document.createElement(type);
+        type == Fragment ? document.createDocumentFragment() : document.createElement(type);
 
     if (element instanceof Element)
         for (const key in rest) {
@@ -45,6 +40,10 @@ function commonJSXHandler(
 
             if (key == 'className') {
                 element.className = value;
+            } else if (key == 'value') {
+                (element as HTMLInputElement | HTMLSelectElement).value = value;
+            } else if (key == 'checked') {
+                (element as HTMLInputElement).checked = Boolean(value);
             } else if (key == 'classList') {
                 if (Array.isArray(value)) {
                     element.classList.add(...value.filter(Boolean));
@@ -87,4 +86,4 @@ function commonJSXHandler(
 }
 
 export const jsx = commonJSXHandler;
-export const jsxx = commonJSXHandler;
+export const jsxs = commonJSXHandler;

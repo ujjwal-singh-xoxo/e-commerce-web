@@ -1,0 +1,37 @@
+.hero-search {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    margin-top: 34px;
+}
+
+.hero-search input {
+    background: #f7f4ed;
+    border: 1px solid #8e887d;
+    color: #181715;
+    font:
+        13px Arial,
+        sans-serif;
+    min-width: 240px;
+    padding: 13px;
+}
+
+.hero-search a {
+    border-bottom: 1px solid #181715;
+    font:
+        11px Arial,
+        sans-serif;
+    padding-bottom: 5px;
+}
+
+@media (max-width: 700px) {
+    .hero-search {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .hero-search input {
+        min-width: 0;
+        width: 100%;
+    }
+}
