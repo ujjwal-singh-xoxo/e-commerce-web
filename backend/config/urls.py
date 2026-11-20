@@ -16,8 +16,26 @@ Including another URLconf
 """
 
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
+from apps.products.views import ProductCatalogueView
+from apps.orders.views import PaymentInitView, PaymentVerifyView
+from apps.accounts.views import CsrfView, LoginView, LogoutView, RegisterView, SessionView
+from apps.cart.views import CartView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/products/", ProductCatalogueView.as_view(), name="product-catalogue"),
+    path("api/payments/init/", PaymentInitView.as_view(), name="payment-init"),
+    path("api/payments/verify/", PaymentVerifyView.as_view(), name="payment-verify"),
+    path("api/auth/csrf/", CsrfView.as_view()),
+    path("api/auth/register/", RegisterView.as_view()),
+    path("api/auth/login/", LoginView.as_view()),
+    path("api/auth/logout/", LogoutView.as_view()),
+    path("api/auth/session/", SessionView.as_view()),
+    path("api/cart/", CartView.as_view()),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

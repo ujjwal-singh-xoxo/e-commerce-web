@@ -31,6 +31,9 @@ class Order(models.Model):
     sub_total = models.DecimalField(max_digits=15, decimal_places=2)
     tax_total = models.DecimalField(max_digits=15, decimal_places=2)
     grand_total = models.DecimalField(max_digits=15, decimal_places=2)
+    razorpay_order_id = models.CharField(max_length=80, unique=True, null=True, blank=True)
+    razorpay_payment_id = models.CharField(max_length=80, unique=True, null=True, blank=True)
+    paid_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         constraints = [
@@ -48,7 +51,7 @@ class Order(models.Model):
             ),
             models.CheckConstraint(
                 condition=models.Q(
-                    grand_total_gt=models.F("sub_total"),
+                    grand_total__gte=models.F("sub_total"),
                 ),
                 name="grand_total_greater_than_or_equal_to_zero",
             ),

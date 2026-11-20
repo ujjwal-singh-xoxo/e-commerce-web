@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "apps.accounts",
     "apps.products",
     "apps.cart",
+    "apps.orders",
 ]
 
 MIDDLEWARE = [
@@ -133,6 +134,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = "static/"
+
+# Local product-media storage. In production these assets will be uploaded to
+# Cloudflare R2 and ProductImage.url will contain the public CDN URL instead.
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 
 # Email

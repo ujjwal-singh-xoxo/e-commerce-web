@@ -1,4 +1,6 @@
-# E-Commerce Web
+# Luxurious Bath Studio
+
+Catalogue and showroom website for Luxurious Bath Studio, Jaipur.
 
 ## Prerequisites
 
@@ -48,3 +50,9 @@ Run the backend and frontend simultaneously in separate terminals.
 - **Frontend:** Vite development server, using the URL printed in its terminal
 
 Make sure the frontend's API configuration points to the local backend.
+
+## Project guides
+
+- [Backend guide](backend/README.md) - database, catalogue extraction, and local media
+- [Frontend guide](frontend/README.md) - Vite/custom JSX setup and planned app structure
+- [Project handoff](HANDOFF.md) - current build state, decisions, and next steps

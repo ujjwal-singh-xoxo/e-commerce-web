@@ -20,3 +20,9 @@ Thumbs.db
 # Your personal files
 start-db.ps1
 psserver-setup
+
+# Generated catalogue extraction files
+/output/*
+!/output/.gitkeep
+/media/*
+!/media/.gitkeep
