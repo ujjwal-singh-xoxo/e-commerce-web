@@ -1,4 +1,5 @@
 import phonenumbers
+from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -14,18 +15,40 @@ def validate_phone_number(value: str):
         raise ValidationError("Invalid number format")
 
 
+class UserManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        email = self.normalize_email(email)
+
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+
+        return user
+
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+        extra_fields.setdefault("is_active", True)
+
+        return self.create_user(email, password, **extra_fields)
+
+
 class UserProfile(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
+
+    objects = UserManager()
 
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=150)
-
-    phone_number = models.CharField(max_length=15, validators=[validate_phone_number])
-
+    phone_number = models.CharField(
+        max_length=15,
+        validators=[validate_phone_number],
+    )
     email = models.EmailField(max_length=254, unique=True)
 
-    is_active = models.BooleanField()
-    is_staff = models.BooleanField()
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
 
 
 class AddressBook(models.Model):

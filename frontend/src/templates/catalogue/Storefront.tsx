@@ -27,10 +27,10 @@ export function Storefront({
                     LUXURIOUS <span>BATH STUDIO</span>
                 </a>
                 <nav>
-                    <a href="/pages/shopping.html">Shop</a>
+                    <a href="/shopping/">Shop</a>
                     <a href="#studio">Studio</a>
-                    <a href="/pages/cart.html">My enquiry</a>
-                    <a href="/pages/profile.html">Account</a>
+                    <a href="/cart/">My enquiry</a>
+                    <a href="/profile/">Account</a>
                 </nav>
                 <a className="lbs-call" href="tel:9829005062">
                     Book a visit ↗
@@ -54,7 +54,7 @@ export function Storefront({
                                     }
                                 }}
                             />
-                            <a href="/pages/shopping.html">Browse catalogue →</a>
+                            <a href="/shopping">Browse catalogue →</a>
                         </div>
                     </div>
                     <aside>
