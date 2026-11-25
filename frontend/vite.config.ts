@@ -8,7 +8,11 @@ export default defineConfig({
             '/media': 'http://127.0.0.1:8000',
         },
     },
+    base: '/static',
     build: {
+        outDir: '../backend/frontend_dist',
+        emptyOutDir: true,
+        assetsDir: 'assets',
         rolldownOptions: {
             input: {
                 main: path.resolve(import.meta.dirname, 'index.html'), // aka also the main page
